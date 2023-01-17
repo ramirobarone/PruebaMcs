@@ -36,7 +36,7 @@ namespace PruebasMcsGithub.Controllers
         public async Task<IActionResult> otroPrueba()
         {
             const string secretName = "JwtMas";
-            var keyVaultName = "MasAssessments";
+            var keyVaultName = "masassessmentvault";
             var kvUri = $"https://{keyVaultName}.vault.azure.net";
             var client = new SecretClient(new Uri(kvUri), new DefaultAzureCredential());
 
