@@ -29,5 +29,10 @@ namespace PruebasMcsGithub.Controllers
             })
             .ToArray();
         }
+        [HttpGet(Name = "OtroEndpoint")]
+        public string otroPrueba()
+        {
+            return "Hola";
+        }
     }
 }
