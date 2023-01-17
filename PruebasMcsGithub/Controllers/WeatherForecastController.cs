@@ -32,7 +32,7 @@ namespace PruebasMcsGithub.Controllers
             })
             .ToArray();
         }
-        [HttpGet(Name = "OtroEndpoint")]
+        [HttpGet(nameof(otroPrueba))]
         public async Task<IActionResult> otroPrueba()
         {
             const string secretName = "JwtMas";
