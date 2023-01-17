@@ -35,36 +35,45 @@ namespace PruebasMcsGithub.Controllers
         [HttpGet(nameof(otroPrueba))]
         public async Task<IActionResult> otroPrueba()
         {
-            const string secretName = "JwtMas";
-            var keyVaultName = "masassessmentvault";
-            var kvUri = $"https://{keyVaultName}.vault.azure.net";
-            var client = new SecretClient(new Uri(kvUri), new DefaultAzureCredential());
+            try
+            {
 
-            var secretValue = "";
+                const string secretName = "JwtMas";
+                var keyVaultName = "masassessmentvault";
+                var kvUri = $"https://{keyVaultName}.vault.azure.net";
+                var client = new SecretClient(new Uri(kvUri), new DefaultAzureCredential());
 
-            //Console.Write($"Creating a secret in {keyVaultName} called '{secretName}' with the value '{secretValue}' ...");
-            //await client.SetSecretAsync(secretName, secretValue);
-            //Console.WriteLine(" done.");
+                var secretValue = "";
 
-            //Console.WriteLine("Forgetting your secret.");
-            //secretValue = string.Empty;
-            //Console.WriteLine($"Your secret is '{secretValue}'.");
+                //Console.Write($"Creating a secret in {keyVaultName} called '{secretName}' with the value '{secretValue}' ...");
+                //await client.SetSecretAsync(secretName, secretValue);
+                //Console.WriteLine(" done.");
 
-            Console.WriteLine($"Retrieving your secret from {keyVaultName}.");
-            var secret = await client.GetSecretAsync(secretName);
-            Console.WriteLine($"Your secret is '{secret.Value.Value}'.");
+                //Console.WriteLine("Forgetting your secret.");
+                //secretValue = string.Empty;
+                //Console.WriteLine($"Your secret is '{secretValue}'.");
 
-            //Console.Write($"Deleting your secret from {keyVaultName} ...");
-            //DeleteSecretOperation operation = await client.StartDeleteSecretAsync(secretName);
-            //// You only need to wait for completion if you want to purge or recover the secret.
-            //await operation.WaitForCompletionAsync();
-            //Console.WriteLine(" done.");
+                Console.WriteLine($"Retrieving your secret from {keyVaultName}.");
+                var secret = await client.GetSecretAsync(secretName);
+                Console.WriteLine($"Your secret is '{secret.Value.Value}'.");
 
-            //Console.Write($"Purging your secret from {keyVaultName} ...");
-            //await client.PurgeDeletedSecretAsync(secretName);
-            //Console.WriteLine(" done.");
+                //Console.Write($"Deleting your secret from {keyVaultName} ...");
+                //DeleteSecretOperation operation = await client.StartDeleteSecretAsync(secretName);
+                //// You only need to wait for completion if you want to purge or recover the secret.
+                //await operation.WaitForCompletionAsync();
+                //Console.WriteLine(" done.");
 
-            return Ok(secret);
+                //Console.Write($"Purging your secret from {keyVaultName} ...");
+                //await client.PurgeDeletedSecretAsync(secretName);
+                //Console.WriteLine(" done.");
+                return Ok(secret);
+            }
+            catch (Exception ex)
+            {
+
+                return Ok(ex.Message);
+            }
+
         }
     }
 }
