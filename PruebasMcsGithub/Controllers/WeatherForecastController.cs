@@ -33,7 +33,7 @@ namespace PruebasMcsGithub.Controllers
             .ToArray();
         }
         [HttpGet(nameof(otroPrueba))]
-        public async Task<IActionResult> otroPrueba()
+        public async Task<IActionResult> otroPrueba(string message)
         {
             try
             {
@@ -66,7 +66,7 @@ namespace PruebasMcsGithub.Controllers
                 //Console.Write($"Purging your secret from {keyVaultName} ...");
                 //await client.PurgeDeletedSecretAsync(secretName);
                 //Console.WriteLine(" done.");
-                return Ok("Hola");
+                return Ok(message);
             }
             catch (Exception ex)
             {
